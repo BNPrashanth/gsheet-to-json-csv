@@ -88,9 +88,9 @@ func WriteLanguageFiles(csvFilePath string) *u.ErrorResponse {
 			// fmt.Println(csvFileContent[j+1][0], row[i+1])
 			mapLn[csvFileContent[j+1][0]] = row[i+1]
 		}
-		x, _ := json.Marshal(mapLn)
-		// u.GeneralLogger.Println(string(x))
-		file.Write(x)
+		encodedJSON, _ := json.Marshal(mapLn)
+		// u.GeneralLogger.Println(string(encodedJSON))
+		file.Write(encodedJSON)
 		file.Close()
 	}
 	return u.ReturnErrorResponse(nil, "")
