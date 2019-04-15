@@ -7,6 +7,12 @@ import (
 	"path/filepath"
 )
 
+// ErrorResponse exported
+type ErrorResponse struct {
+	Message string
+	Err     error
+}
+
 // GeneralLogger exported
 var GeneralLogger *log.Logger
 
@@ -14,7 +20,7 @@ var GeneralLogger *log.Logger
 var ErrorLogger *log.Logger
 
 func init() {
-	absPath, err := filepath.Abs("../log")
+	absPath, err := filepath.Abs("../outputs/log")
 	if err != nil {
 		fmt.Println("Error reading given path:", err)
 	}
@@ -26,4 +32,12 @@ func init() {
 	}
 	GeneralLogger = log.New(generalLog, "General Logger:\t", log.Ldate|log.Ltime|log.Lshortfile)
 	ErrorLogger = log.New(generalLog, "Error Logger:\t", log.Ldate|log.Ltime|log.Lshortfile)
+}
+
+// ReturnErrorResponse exported
+func ReturnErrorResponse(err error, message string) *ErrorResponse {
+	return &ErrorResponse{
+		Message: message,
+		Err:     err,
+	}
 }
