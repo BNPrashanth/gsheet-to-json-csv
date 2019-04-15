@@ -60,11 +60,11 @@ func Download(url string, filename string, timeout int64) *u.ErrorResponse {
 }
 
 // WriteLanguageFiles exported
-func WriteLanguageFiles(fileName string) *u.ErrorResponse {
-	csvFile, err := os.Open(fileName)
+func WriteLanguageFiles(csvFilePath string) *u.ErrorResponse {
+	csvFile, err := os.Open(csvFilePath)
 	if err != nil {
-		u.ErrorLogger.Println("Cannot open file:"+fileName, err)
-		return u.ReturnErrorResponse(err, "Cannot open file:"+fileName)
+		u.ErrorLogger.Println("Cannot open file:"+csvFilePath, err)
+		return u.ReturnErrorResponse(err, "Cannot open file:"+csvFilePath)
 
 	}
 
