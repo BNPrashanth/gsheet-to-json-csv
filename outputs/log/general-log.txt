@@ -1,0 +1,6 @@
+General Logger:	2019/04/15 21:03:58 main.go:11: Starting Extracting Language Files from GoogleSheet - downloading csv approach..
+General Logger:	2019/04/15 21:03:58 fileService.go:20: Downloading https://docs.google.com/spreadsheets/d/e/2PACX-1vQIhLNNfUKVjxMkMwdtTFnvuV8oN1H_OmgOWRCwHBkSfOo1fzA08LXDfcK4EA86fx18M4FeAIwOoBBR/pub?output=csv ...
+General Logger:	2019/04/15 21:04:00 fileService.go:57: Doc downloaded in  ../outputs/gsheet.csv
+General Logger:	2019/04/15 21:04:00 fileService.go:86: Language: en 0
+General Logger:	2019/04/15 21:04:00 fileService.go:86: Language: fr 1
+General Logger:	2019/04/15 21:04:00 main.go:25: Completed Execution..
