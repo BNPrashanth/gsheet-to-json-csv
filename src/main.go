@@ -11,8 +11,7 @@ func main() {
 	u.GeneralLogger.Println("Starting Extracting Language Files from GoogleSheet - downloading csv approach..")
 
 	csvFilePath := "../outputs/gsheet.csv"
-	var errorResponse *u.ErrorResponse
-	errorResponse = s.Download(
+	errorResponse := s.Download(
 		"https://docs.google.com/spreadsheets/d/e/2PACX-1vQIhLNNfUKVjxMkMwdtTFnvuV8oN1H_OmgOWRCwHBkSfOo1fzA08LXDfcK4EA86fx18M4FeAIwOoBBR/pub?output=csv",
 		csvFilePath,
 		5000,

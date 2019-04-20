@@ -69,6 +69,9 @@ func WriteLanguageFiles(csvFilePath string) *u.ErrorResponse {
 	}
 
 	csvFileContent, err := csv.NewReader(csvFile).ReadAll()
+	if err != nil {
+		return u.ReturnErrorResponse(err, "Cannot read file:"+csvFilePath)
+	}
 	for i, lang := range csvFileContent[0][1:] {
 		absPath, err := filepath.Abs(outputPath + lang + ".json")
 		if err != nil {
@@ -81,7 +84,10 @@ func WriteLanguageFiles(csvFilePath string) *u.ErrorResponse {
 			u.ErrorLogger.Println("Cannot open file: \""+lang+".json\"", err)
 			return u.ReturnErrorResponse(err, "Cannot open file: \""+lang+".json\"")
 		}
-		file.Truncate(0)
+		err = file.Truncate(0)
+		if err != nil {
+			return u.ReturnErrorResponse(err, "Cannot truncate file: \""+lang+".json\"")
+		}
 		mapLn := map[string]string{}
 		u.GeneralLogger.Println("Language:", lang, i)
 		for j, row := range csvFileContent[1:] {
@@ -90,7 +96,10 @@ func WriteLanguageFiles(csvFilePath string) *u.ErrorResponse {
 		}
 		encodedJSON, _ := json.Marshal(mapLn)
 		// u.GeneralLogger.Println(string(encodedJSON))
-		file.Write(encodedJSON)
+		_, err = file.Write(encodedJSON)
+		if err != nil {
+			return u.ReturnErrorResponse(err, "Cannot write to file: \""+lang+".json\"")
+		}
 		file.Close()
 	}
 	return u.ReturnErrorResponse(nil, "")
